@@ -1,0 +1,682 @@
+body { font-family: Arial, sans-serif; margin: 0; background-color: #f0f2f5; display: flex;
+    flex-direction: column;
+    min-height: 100vh;}
+.container { max-width: 1200px; margin: auto; padding: 0 15px; }
+header { background: #fff; 
+         padding: 15px 0; 
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        /* --- BẮT ĐẦU PHẦN THÊM MỚI --- */
+           position: fixed; /* Cố định vị trí so với màn hình */
+           top: 0;          /* Luôn ở trên cùng */
+           left: 0;         /* Căn sát lề trái */
+           width: 100%;     /* Chiếm toàn bộ chiều ngang */
+           z-index: 1000;   /* Đảm bảo header luôn nổi lên trên các nội dung khác */}
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 24px; font-weight: bold; color: #333; text-decoration: none; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+nav ul li a { padding: 10px 15px; text-decoration: none; color: #555; font-weight: bold; }
+.btn { padding: 10px 20px; border-radius: 5px; text-decoration: none; color: white; border: none; cursor: pointer; }
+.btn-login { background-color: #007bff; }
+.btn-register { background-color: #28a745; margin-left: 10px; }
+main { 
+    padding : 100px 0 40px 0; 
+    flex-grow: 1;}
+h1 { text-align: center; margin-bottom: 30px; }
+.account-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+.account-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
+.account-card img { width: 100%; height: 180px; object-fit: cover; }
+.card-body { padding: 20px; }
+.card-body h3 { margin-top: 0; }
+.price { font-size: 1.25rem; font-weight: bold; color: #e53935; margin: 15px 0; }
+.btn-buy { background-color: #e53935; width: 100%; }
+
+
+footer { background: #333; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px; }
+/* Thêm vào cuối file style.css */
+.auth-form {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.auth-form .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+}
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* --- CSS cho thanh tìm kiếm và lọc --- */
+.filter-bar {
+    background-color: #fff;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    margin-bottom: 40px;
+}
+
+.filter-form {
+    display: flex;
+    align-items: flex-end; /* Căn các mục theo lề dưới */
+    gap: 20px; /* Khoảng cách giữa các mục */
+}
+
+/* Style cho mỗi nhóm (label + input) */
+.filter-form .form-group {
+    flex: 1; /* Cho các mục tự động co giãn bằng nhau */
+    margin-bottom: 0;
+}
+
+.filter-form .form-group.search-group {
+    flex: 2; /* Cho ô tìm kiếm rộng hơn một chút */
+}
+
+.filter-form label {
+    display: block;
+    font-weight: 600; /* Chữ đậm vừa phải */
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Style chung cho tất cả các ô input, select và button */
+.filter-form input,
+.filter-form select,
+.filter-form button {
+    width: 100%;
+    height: 48px;
+    padding: 0 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.filter-form input:focus,
+.filter-form select:focus {
+    border-color: #007bff;
+}
+
+/* Style riêng cho nút bấm */
+.filter-form button {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.filter-form button:hover {
+    background-color: #0069d9;
+}
+/* Sửa lại CSS cho thẻ nav để sắp xếp các phần tử con */
+nav {
+    display: flex;         /* Hiển thị các phần tử con (ul, form) theo hàng ngang */
+    align-items: center;   /* Căn giữa các phần tử con theo chiều dọc */
+    gap: 30px;             /* Tạo khoảng cách 30px giữa menu và ô tìm kiếm */
+}
+
+/* Xóa margin cũ của form nếu có */
+.search-form {
+    display: flex;
+    /* margin-left: 30px;  <-- Xóa dòng này nếu bạn đã thêm trước đó */
+}
+
+.search-form input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    min-width: 200px; /* Đặt chiều rộng tối thiểu */
+}
+
+.search-form button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    font-size: 16px;
+}
+/* Container chính của trang giỏ hàng */
+.cart-page-container {
+    display: flex;
+    gap: 30px; /* Khoảng cách giữa 2 cột */
+    align-items: flex-start;
+}
+
+/* Cột danh sách sản phẩm bên trái */
+.cart-items-list {
+    flex: 2; /* Chiếm 2/3 không gian */
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.cart-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+.cart-header h2 span {
+    font-size: 16px;
+    font-weight: normal;
+    color: #666;
+}
+.remove-all-btn {
+    color: #e53935;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Mỗi thẻ sản phẩm trong giỏ */
+.cart-item-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+.item-image {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.item-details {
+    flex-grow: 1; /* Chiếm hết không gian còn lại */
+}
+.item-name {
+    margin: 0 0 5px 0;
+    font-weight: bold;
+}
+.item-status {
+    font-size: 13px;
+    color: #28a745;
+}
+.item-price {
+    font-size: 18px;
+    font-weight: bold;
+    min-width: 120px; /* Giữ chiều rộng cố định */
+    text-align: right;
+}
+.item-remove-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+/* Cột thanh toán bên phải */
+.checkout-summary {
+    flex: 1; /* Chiếm 1/3 không gian */
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+.checkout-summary h2 {
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+.summary-row.total span {
+    font-weight: bold;
+    font-size: 18px;
+}
+.checkout-summary hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0 20px 0;
+}
+.btn-checkout {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* --- CSS cho thông báo (Toast Notification) --- */
+/* --- CSS cho Toast Notification --- */
+.toast {
+    position: fixed; /* Hiển thị đè lên trên các nội dung khác */
+    top: 20px;
+    right: 20px;
+    background-color: #2ecc71; /* Màu xanh lá cây */
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1000; /* Luôn nổi trên cùng */
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; /* Hiệu ứng mờ dần trong 0.5s */
+}
+
+.toast.fade-out {
+    opacity: 0; /* Trạng thái ẩn */
+}
+
+.toast p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Style cho thông báo thành công (màu xanh) */
+.toast.success {
+    background-color: #2ecc71;
+}
+
+/* Style cho thông báo lỗi (màu đỏ) */
+.toast.error {
+    background-color: #e74c3c;
+}
+/* --- CSS cho trang chi tiết sản phẩm căn giữa --- */
+
+/* Bỏ style cố định nút bấm cũ */
+/* .add-to-cart-form { position: static; } */
+
+.product-detail-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    padding: 30px 0;
+}
+
+.product-image-container {
+    flex-basis: 45%;
+}
+.product-image-container img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-info-container {
+    flex-basis: 55%;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.product-title {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 30px;
+    font-weight: bold;
+    color: #e53935;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.description-section {
+    margin-bottom: 30px;
+}
+.description-section h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.description-section p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* SỬA LẠI NÚT BẤM CHO NHỎ GỌN */
+.add-to-cart-form .btn-buy {
+    width: auto; /* Để nút tự co giãn theo chữ */
+    min-width: 200px; /* Đặt chiều rộng tối thiểu hợp lý */
+    padding: 15px 30px; /* Chỉnh lại padding cho cân đối */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* CSS cho các khu vực danh mục */
+.category-section {
+    margin-bottom: 50px;
+}
+
+.category-title {
+    font-size: 28px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* Trang thanh toan */
+/* --- CSS cho Trang Nạp Tiền --- */
+.deposit-page-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 15px;
+}
+.deposit-form-wrapper {
+    width: 100%;
+    max-width: 650px; /* Thu hẹp chiều rộng form */
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-align: center;
+}
+.deposit-form-wrapper h1 {
+    margin-top: 0;
+}
+.current-balance {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 25px;
+}
+.deposit-options {
+    text-align: left; /* Căn lề trái cho các tùy chọn */
+}
+.deposit-options h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.price-btn {
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.price-btn:hover, .price-btn:focus {
+    border-color: #007bff;
+    background-color: #e2e6ea;
+    outline: none;
+}
+.custom-amount-label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+.amount-input {
+    width: 95%;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.btn-checkout {
+    width: 100%;
+    padding: 15px;
+}
+
+
+/* Thêm vào cuối file style.css */
+.category-section.dark-theme {
+    background-color: #202020; /* Màu nền tối */
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
+}
+.dark-theme .category-title, .dark-theme h2 {
+    color: white;
+    margin: 0;
+    font-size: 24px;
+}
+.dark-theme .view-all-link {
+    color: #00a8ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.dark-theme .account-card {
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+}
+.dark-theme .account-card h3, .dark-theme .account-card p {
+    color: #eee;
+}
+.account-grid.full-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* Thêm vào cuối file style.css */
+.success-message {
+    padding: 15px;
+    background-color: #e8f5e9;
+    color: #28a745;
+    border: 1px solid #a5d6a7;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* --- CSS cho thanh tìm kiếm và lọc --- */
+.filter-bar {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+.filter-form {
+    display: flex;
+    align-items: flex-end; /* Căn giữa các mục theo chiều dọc */
+    gap: 20px;
+}
+.filter-form .form-group {
+    width: 100%;
+}
+.filter-form .form-group.search-group {
+    flex-grow: 2; /* Cho ô tìm kiếm rộng hơn */
+}
+.filter-form label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* --- PHẦN SỬA ĐỔI QUAN TRỌNG --- */
+/* Tạo một rule chung cho TẤT CẢ các phần tử để đảm bảo chúng có cùng chiều cao */
+.filter-form input, 
+.filter-form select,
+.filter-form button {
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 49px; /* Đặt một chiều cao CỐ ĐỊNH */
+    box-sizing: border-box; /* Rất quan trọng */
+    margin: 0; /* Xóa margin mặc định */
+}
+
+/* Giữ lại các style riêng cho nút bấm */
+.filter-form button {
+    padding: 12px 25px; /* Có thể ghi đè lại padding cho nút nếu muốn */
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.error-message {
+    color: #e74c3c; /* Màu đỏ */
+    background-color: #fbe9e7;
+    border: 1px solid #ffab91;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- CSS cho trang Thanh toán thành công --- */
+.order-success-container {
+    max-width: 600px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-align: center;
+}
+.success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #2ecc71;
+    color: white;
+    font-size: 36px;
+    line-height: 60px;
+    margin: 0 auto 20px auto;
+}
+.order-success-container h1 {
+    color: #2ecc71;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+.order-success-container p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+}
+.action-links {
+    margin-top: 30px;
+}
+.action-links a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0 15px;
+}
+.link-download {
+    color: #3498db;
+}
+.link-home {
+    color: #7f8c8d;
+}
+
+/* Style cho phần mô tả sản phẩm trong giỏ hàng */
+.item-description {
+    font-size: 13px;
+    color: #666;
+    margin: 5px 0;
+    /* Giới hạn hiển thị trên 2 dòng để không làm vỡ layout */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+    /* --- CSS cho khu vực Giới thiệu --- */
+.intro-section {
+    background-color: #fff;
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+    margin-top: 40px;
+}
+
+.intro-content {
+    /* Style cho nội dung */
+    line-height: 1.7;
+    color: #555;
+    /* Hiệu ứng co giãn mượt mà */
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden; /* Ẩn phần nội dung thừa */
+}
+
+/* Trạng thái mặc định bị thu gọn */
+.intro-content.collapsed {
+    max-height: 100px; /* Chỉ hiển thị 100px chiều cao ban đầu */
+    position: relative;
+}
+
+/* Tạo một lớp phủ mờ ở dưới để người dùng biết còn nội dung */
+.intro-content.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to top, white, rgba(255,255,255,0));
+}
+
+/* Nút bấm Xem thêm / Thu gọn */
+.btn-toggle-intro {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
